@@ -56,16 +56,16 @@ function serveStatic(response,cache,absPath){
 
 var server = http.createServer(function (request,response) {
     var filePath = false;
-    if(request.url == '/'){
+    if(request.url == '/ss'){
         filePath = 'public/index.html';
     }else{
-        filePath = 'public' + request.url;
+        filePath = 'publicss' + request.url;
     }
-    var absPath = './' + filePath;
+    var absPath = './sss' + filePath;
     serveStatic(response,cache,absPath);
 });
 server.listen(3000,function () {
-    console.log("Server listening on port 3000.");
+    console.log("Server listening on port 3000.111");
 });
 
 var chatServer = require('./lib/chat_server');
