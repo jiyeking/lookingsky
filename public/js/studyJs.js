@@ -26,7 +26,7 @@ function largestOfFour(arr) {
     for(var i in arr){
         arr[i].sort(function (a,b) {
             return b - a;
-        })
+        });
         rtnArr.push(arr[i][0])
     }
     return rtnArr;
