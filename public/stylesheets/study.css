@@ -1,0 +1,13 @@
+
+body {
+    background-color: #faf2cc;
+    font-family: 'Raleway', sans-serif;
+    font-weight:400;
+}
+.quoteBox{
+    background-color: #2b669a;
+    margin: 20% 20% auto 20%;
+    height: auto;
+    color: white;
+    border-radius: 3px;
+}
