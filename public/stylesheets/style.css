@@ -7,11 +7,6 @@ a {
   color: #00B7FF;
 }
 
-#content {
-  width:800px;
-  margin-left: auto;
-  margin-right: auto;
-}
 #room {
   background-color: #ddd;
   margin-bottom: 1em;
@@ -23,4 +18,46 @@ a {
   background-color: #eee;
   margin-bottom: 1em;
   margin-right: 10px;
+}
+
+.col-center-block {
+  float: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10%;
+}
+/* 背景 */
+.body-bg{
+  background-color: #faebcc;
+}
+
+/*居中层 */
+.centerDiv{
+  border-radius: 5px;
+  width: 50%;
+  background-color: #ffffff;
+  padding-bottom: 5%;
+}
+.leftBox{
+  width:20%;
+}
+/* 盒子 */
+.boxDiv{
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding-left: 1%;
+  padding-top: 2%;
+  padding-bottom: 5%;
+}
+/* 标题层 */
+.topDiv{
+  padding-top: 2%;
+  padding-bottom: 4%;
+  height: 10%;
+}
+/* 提交按钮 */
+.submitBtn{
+  width: 100%;
+  background-color: #337ad3;
 }
