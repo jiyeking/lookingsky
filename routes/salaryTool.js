@@ -62,18 +62,27 @@ var salaryRate = {
  * 计算结果
  */
 router.get("/result", function (req, res, next) {
+    //获取参数
+    var form = req.query;
     //定义公式
     var expression = "(salary - insureMoney - otherMoney - baseLine) ";
     //应纳税所得额
     var shouldRateMoney = convertExpression(expression, form);
-    var RateMoney = shouldRateMoney * rate -  deduct;
+    //等级
+    for(var level in salaryRate){
+        if(form.salary <= salaryRate[level].lineMoney){
+            break;
+        }
+    }
+
+    var rateMoney = convertExpression(shouldRateMoney +" * rate/100 -  deduct",salaryRate[level]);
     //计算过程
-    //获取参数
-    var form = req.query;
+
 
     var data = {
-        result :
+        result : form.salary - rateMoney -form.insureMoney-form.otherMoney
     }
+    console.log("**************"+data.result)
     res.render("salaryTool/result", data);
 });
 /**
@@ -84,7 +93,7 @@ router.get("/result", function (req, res, next) {
  */
 function convertExpression(expression, data) {
     for(var key in data){
-        var val = data[key].length > 0 ? data[key] : 0;
+        var val = (data[key].length > 0 || data[key]>0) ? data[key] : 0;
         var reg = new RegExp(key, "g");
         expression = expression.replace(reg, val);
     }
