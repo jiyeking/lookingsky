@@ -3,6 +3,8 @@
  * Created by JKL on 2017/8/13.
  */
 var express = require("express");
+require("./viewObj/salary");
+require("../public/js/tools");
 var router = express.Router();
 
 
@@ -10,9 +12,9 @@ var router = express.Router();
 /**
  * 工具首页
  */
-router.get("/", function (req, res, next) {
-    res.render("salaryTool/index",{"title" : "个人工资收入最大化计算工具"});
-});
+// router.get("/", function (req, res, next) {
+//     res.render("salaryTool/index",new salary());
+// });
 var salaryRate = {
     1 : {type : 1,//含税级距
         level : 1,
@@ -57,13 +59,20 @@ var salaryRate = {
     }
     }
 
-
 /**
  * 计算结果
  */
-router.get("/result", function (req, res, next) {
+router.all("/", function (req, res, next) {
+    if(req.method == "get"){
+        res.render("salaryTool/index", new salary());
+    }
     //获取参数
-    var form = req.query;
+    var form = new salary(req.body);
+
+    if(!tools.isEmptyObject(req.query)){
+        form = req.query;
+    }
+
     //定义公式
     var expression = "(salary - insureMoney - otherMoney - baseLine) ";
     //应纳税所得额
@@ -79,11 +88,8 @@ router.get("/result", function (req, res, next) {
     //计算过程
 
 
-    var data = {
-        result : form.salary - rateMoney -form.insureMoney-form.otherMoney
-    }
-    console.log("**************"+data.result)
-    res.render("salaryTool/result", data);
+    form.result = form.salary - rateMoney -form.insureMoney-form.otherMoney;
+    res.render("salaryTool/index", form);
 });
 /**
  * 公式转换成具体值操作
@@ -105,5 +111,8 @@ router.get("/:id", function (req, res) {
     data["total"] = 15000;
     res.render("salaryTool/salary", data);
 });
+
+
+
 
 module.exports = router;
