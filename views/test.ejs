@@ -24,7 +24,7 @@
 //            debugger;
 //        } , "jsonp");
         var obj;
-        jQuery.get( "http://localhost/api/wechat?jsoncallback=?" ,{"url":window.location.href},function (data) {
+        jQuery.get( "http://39.106.139.27/api/wechat?jsoncallback=?" ,{"url":window.location.href},function (data) {
             obj = data;
             $("#timestamp").val(data["timestamp"]);//时间戳
             $("#noncestr").val(data["nonceStr"]);//随机串
