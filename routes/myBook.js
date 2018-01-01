@@ -9,6 +9,7 @@ router.get("/addBook", function (req, res) {
 
     //获取参数
     var data = tools.extend({},req.body);
+    data["reqBody"] = req.body;
 
     if(!tools.isEmptyObject(req.query)){
         data = req.query;
