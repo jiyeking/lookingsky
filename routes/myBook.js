@@ -5,7 +5,7 @@
 var express = require("express");
 var router = express.Router();
 
-router.get("/addBook", function (req, res) {
+router.all("/addBook", function (req, res) {
 
     //获取参数
     var data = tools.extend({},req.body);
