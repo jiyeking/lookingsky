@@ -7,7 +7,13 @@ var router = express.Router();
 
 router.get("/addBook", function (req, res) {
 
-    var data = req.body;
+    //获取参数
+    var data = tools.extend({},req.body);
+
+    if(!tools.isEmptyObject(req.query)){
+        data = req.query;
+        data["type"] = "query";
+    }
     data["liyongfei"] = true;
     // res.render("salaryTool/salary", data);
     res.json(data);
